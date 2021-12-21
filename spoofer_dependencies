@@ -1,0 +1,3 @@
+pip3 install scapy
+pip3 install netifaces
+pip3 install argparse
