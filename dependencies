@@ -1,0 +1,4 @@
+pip3 install scapy
+pip3 install netifaces
+pip3 install argparse
+sudo pip3 install https://github.com/johnteslade/python-netfilterqueue/archive/refs/heads/update-cython-code.zip
