@@ -6,7 +6,7 @@ For more information on how the attack works, see Documentation.pdf.
 Instructions for Use: 
 ===========
 1. for this tool, you need to install all the libraries from the dependencies file. 
- arp_spoofer.py with the appropriate command line parameters.
+2. run arp_spoofer.py with the appropriate command line parameters.
 3. run code_injector.py with the appropriate command line parameters. 
 4. now you can inject the code.
 
