@@ -30,5 +30,6 @@ Testing:
 ========
 1. create a network in the virtual box
 2. create 2 virtual machines in the virtual box, one of them with Linux connected to the previous network. 
-3. download the code-injection-tool folder into the Linux virtual machine. 4. proceed as in the previous example.
-4. try to connect to an http site from the victim machine.
+3. download the code-injection-tool folder into the Linux virtual machine.
+4. proceed as in the previous example.
+5. try to connect to an http site from the victim machine.
