@@ -12,8 +12,8 @@ Instructions for Use:
 
 Dependencies:
 ============
-This will only work on a Linux machine.
-You must have "libcap" installed
+1. This will only work on a Linux machine. <br>
+2. You must have "libcap" installed
 
 Example:
 =======
