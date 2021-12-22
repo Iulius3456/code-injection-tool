@@ -24,4 +24,4 @@ Assume that:<br>
 
 Then, to execute the attack, call the following commands:<br>
 1. sudo python3 arp_spoofer.py --interface eth0 --ip 192.168.1.16 2. <br>
-2. sudo python3 code_injector --file ./injected.js
+2. sudo python3 code_injector.py --file ./injected.js
