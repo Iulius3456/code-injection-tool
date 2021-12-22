@@ -1,6 +1,6 @@
 Description:
 ===========
-This is a hacking tool that allows users to exploit code injection with arp spoofing. <br>
+This is a hacking tool that allows users to exploit code injection with ARP spoofing. <br>
 For more information on how the attack works, see Documentation.pdf.
 
 Instructions for Use: 
