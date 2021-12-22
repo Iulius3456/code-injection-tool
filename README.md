@@ -25,3 +25,10 @@ Assume that:<br>
 Then, to execute the attack, call the following commands:<br>
 1. sudo python3 arp_spoofer.py --interface eth0 --ip 192.168.1.16 2. <br>
 2. sudo python3 code_injector.py --file ./injected.js
+
+Testing:
+========
+1. create a network in the virtual box
+2. create 2 virtual machines in the virtual box, one of them with Linux connected to the previous network. 
+3. download the code-injection-tool folder into the Linux virtual machine. 4. proceed as in the previous example.
+4. try to connect to an http site from the victim machine.
