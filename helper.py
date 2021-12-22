@@ -4,7 +4,6 @@
 
 import socket, struct
 import scapy.layers.l2 as l2
-import netifaces as ni
 
 class LanController:
     """
@@ -41,10 +40,10 @@ class LanController:
         arp_packet = broadcast/arp_request
         #We use srp function instead of send because we use a custom Ether layer
         response = l2.srp(arp_packet, timeout=1, verbose=False)[0]
-        return response[0][1].hwsrc
+        if len(response) >= 1:
+          return response[0][1].hwsrc
+        return None
 
-    def get_host_ip(self):
-        return ni.ifaddresses(self.interface)[ni.AF_INET][0]['addr']
 
         
 
