@@ -1,10 +1,10 @@
-This is a hacking tool that help the user to exploit code injection using arp spoofing.
+This is a hacking tool that help the user to exploit code injection using arp spoofing. \n
 
 Use instruction:
-1.For this tool you must install all libraries from dependencies file
-2. run arp_spoofer.py with its command line parameters
-3. run code_injector.py with its command line parameters
-4. Now you are ready to inject the code
+1.For this tool you must install all libraries from dependencies file\n
+2. run arp_spoofer.py with its command line parameters\n
+3. run code_injector.py with its command line parameters\n
+4. Now you are ready to inject the code\n
 
-Dependencies:
+Dependencies:\n
 This will work only on linux machine
